@@ -11,8 +11,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     val uiState = MutableStateFlow(UiState(false, ""))
 
     // TODO: PK - Scanner Launcher should be injected so it can be swapped for debug/testing
-//    val launcher: ScannerLauncher = WalletScannerLauncher(app)
-    val launcher: ScannerLauncher = FakeScannerLauncher()
+//    val scannerLauncher: ScannerLauncher = WalletScannerLauncher(app)
+    val scannerLauncher: ScannerLauncher = FakeScannerLauncher()
 
     init {
         checkEligibility()
@@ -21,7 +21,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private fun checkEligibility() {
         viewModelScope.launch {
             uiState.value = uiState.value.copy(shouldShowButton = false)
-            uiState.value = uiState.value.copy(shouldShowButton = launcher.isEligible())
+            uiState.value = uiState.value.copy(shouldShowButton = scannerLauncher.isEligible())
         }
     }
 

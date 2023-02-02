@@ -53,7 +53,7 @@ fun Screen(viewModel: MainViewModel = viewModel()) {
 @Composable
 fun ScanCard(viewModel: MainViewModel) {
     val launcher = rememberLauncherForActivityResult(
-        contract = viewModel.launcher.resultContract,
+        contract = viewModel.scannerLauncher.resultContract,
         onResult = { result ->
             viewModel.handleResult(result)
         }
